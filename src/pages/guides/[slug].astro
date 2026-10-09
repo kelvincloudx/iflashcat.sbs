@@ -1,0 +1,27 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import { articles, type Article } from '../../data/articles';
+import { marked } from 'marked';
+
+export function getStaticPaths() {
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const htmlContent = marked.parse(article.content);
+
+const relatedArticles = articles.filter(a => 
+  article.relatedSlugs?.includes(a.slug) || (a.slug !== article.slug && a.category === article.category)
+).slice(0, 4);
+---
+
+<GuideLayout article={article} relatedArticles={relatedArticles}>
+  <div set:html={htmlContent} />
+</GuideLayout>

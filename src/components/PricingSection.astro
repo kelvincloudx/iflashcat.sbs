@@ -1,0 +1,422 @@
+---
+import { siteConfig } from '../data/site';
+import { regularPlans, specialAnnualPlan, annualTotalTrafficPlans, cycleLabels } from '../data/plans';
+---
+
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">闪电猫 SpeedCAT 套餐价格</span>
+      <h2 class="section-title">
+        透明极速计费方案 <br/>
+        <span class="gradient-text">打造全网最具性价比的便宜机场与安全机场</span>
+      </h2>
+      <p class="section-desc">
+        提供 4 款常规月度重置套餐（支持月付/季付/半年付/年付）、1 款特惠年付小包与 2 款全年流量不清零套餐，全量节点支持 <strong>Clash 节点</strong> 与 <strong>ClashParty 机场</strong> 托管。
+      </p>
+    </div>
+
+    <!-- Cycle Selector Tabs -->
+    <div class="cycle-tabs-wrapper">
+      <div class="cycle-tabs" id="cycle-tabs">
+        <button class="tab-btn active" data-cycle="monthly">月付 (单月结算)</button>
+        <button class="tab-btn" data-cycle="quarterly">季付 (按季优惠)</button>
+        <button class="tab-btn" data-cycle="semi-annual">半年付 (阶梯优惠)</button>
+        <button class="tab-btn" data-cycle="annual">
+          <span>年付</span>
+          <span class="tab-badge">最高省 20%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Regular 4 Plans Grid -->
+    <div class="plans-grid">
+      {regularPlans.map(plan => (
+        <div class={`plan-card glass-card ${plan.badge ? 'featured' : ''}`}>
+          {plan.badge && <div class="plan-badge">{plan.badge}</div>}
+          <div class="plan-header">
+            <h3 class="plan-name">{plan.name}</h3>
+            <p class="plan-scenario">{plan.scenario}</p>
+          </div>
+
+          <div class="plan-price-box">
+            <div class="price-display">
+              <span class="currency">¥</span>
+              <span class="price-num" data-prices={JSON.stringify(plan.prices)}>
+                {plan.prices.monthly}
+              </span>
+              <span class="price-cycle" id={`cycle-text-${plan.id}`}>/ 月</span>
+            </div>
+            <div class="traffic-limit">{plan.trafficLimit}</div>
+          </div>
+
+          <ul class="plan-features">
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span>{plan.features.lineType}</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span>{plan.features.aiSupport}</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span>{plan.features.mediaSupport}</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span>{plan.features.clientCompatibility}</span>
+            </li>
+          </ul>
+
+          <div class="plan-action">
+            <a 
+              href={siteConfig.affUrl} 
+              target={siteConfig.affTarget} 
+              rel={siteConfig.affRel} 
+              class={`btn ${plan.badge ? 'btn-cyan' : 'btn-outline'} btn-block`}
+            >
+              立即订阅 {plan.name}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Special & Annual Total Volume Section Title -->
+    <div class="sub-pricing-header">
+      <h3 class="sub-title">特惠轻量包与按年总量不清零方案</h3>
+      <p class="sub-desc">专为低频备用或用量波动大的用户定制，按年付费不强求按月重置</p>
+    </div>
+
+    <div class="special-plans-grid">
+      <!-- Special Annual Plan Card -->
+      <div class="plan-card glass-card special-card">
+        <div class="plan-badge special-badge">{specialAnnualPlan.badge}</div>
+        <div class="plan-header">
+          <h3 class="plan-name">{specialAnnualPlan.name}</h3>
+          <p class="plan-scenario">{specialAnnualPlan.scenario}</p>
+        </div>
+        <div class="plan-price-box">
+          <div class="price-display">
+            <span class="currency">¥</span>
+            <span class="price-num">{specialAnnualPlan.price}</span>
+            <span class="price-cycle">/ 年</span>
+          </div>
+          <div class="traffic-limit">{specialAnnualPlan.trafficLimit}</div>
+        </div>
+        <ul class="plan-features">
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>{specialAnnualPlan.trafficResetRule}</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>{specialAnnualPlan.features.lineType}</span>
+          </li>
+        </ul>
+        <div class="plan-action">
+          <a href={siteConfig.affUrl} target={siteConfig.affTarget} rel={siteConfig.affRel} class="btn btn-outline btn-block">
+            抢购特惠年付包
+          </a>
+        </div>
+      </div>
+
+      <!-- Annual Total Traffic Plans Cards -->
+      {annualTotalTrafficPlans.map(plan => (
+        <div class="plan-card glass-card special-card">
+          <div class="plan-badge total-badge">{plan.badge}</div>
+          <div class="plan-header">
+            <h3 class="plan-name">{plan.name}</h3>
+            <p class="plan-scenario">{plan.scenario}</p>
+          </div>
+          <div class="plan-price-box">
+            <div class="price-display">
+              <span class="currency">¥</span>
+              <span class="price-num">{plan.price}</span>
+              <span class="price-cycle">/ 年 (365天)</span>
+            </div>
+            <div class="traffic-limit highlight-limit">{plan.trafficLimit}</div>
+          </div>
+          <ul class="plan-features">
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>{plan.trafficResetRule}</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>{plan.features.lineType}</span>
+            </li>
+          </ul>
+          <div class="plan-action">
+            <a href={siteConfig.affUrl} target={siteConfig.affTarget} rel={siteConfig.affRel} class="btn btn-purple btn-block">
+              订购 {plan.name} 不清零包
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const cycleSuffixes: Record<string, string> = {
+    monthly: '/ 月',
+    quarterly: '/ 季 (一次付)',
+    'semi-annual': '/ 半年 (一次付)',
+    annual: '/ 年 (一次付)'
+  };
+
+  const tabs = document.querySelectorAll('#cycle-tabs .tab-btn');
+  const priceNums = document.querySelectorAll('.price-num[data-prices]');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const cycle = tab.getAttribute('data-cycle') || 'monthly';
+
+      priceNums.forEach(numEl => {
+        const prices = JSON.parse(numEl.getAttribute('data-prices') || '{}');
+        if (prices[cycle] !== undefined) {
+          numEl.textContent = prices[cycle];
+        }
+
+        const planCard = numEl.closest('.plan-card');
+        if (planCard) {
+          const cycleTextEl = planCard.querySelector('.price-cycle');
+          if (cycleTextEl) {
+            cycleTextEl.textContent = cycleSuffixes[cycle] || '/ 月';
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .pricing-section {
+    padding: 90px 0;
+    background: var(--color-bg);
+  }
+
+  .cycle-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .cycle-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-surface);
+    padding: 6px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+  }
+
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn.active {
+    background: var(--color-electric-cyan);
+    color: #0F172A;
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+  }
+
+  .tab-badge {
+    font-size: 0.72rem;
+    background: #EF4444;
+    color: #FFFFFF;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 70px;
+  }
+
+  .plan-card {
+    position: relative;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan-card.featured {
+    border-color: var(--color-electric-cyan);
+    box-shadow: var(--shadow-glow-cyan);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+  }
+
+  .special-badge {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  }
+
+  .total-badge {
+    background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  }
+
+  .plan-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+
+  .plan-scenario {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    min-height: 40px;
+    line-height: 1.5;
+  }
+
+  .plan-price-box {
+    margin: 20px 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .currency {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-electric-cyan);
+  }
+
+  .price-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+
+  .price-cycle {
+    font-size: 0.85rem;
+    color: var(--color-text-subtle);
+  }
+
+  .traffic-limit {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #38BDF8;
+    margin-top: 6px;
+  }
+
+  .highlight-limit {
+    color: #A855F7;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-grow: 1;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: #CBD5E1;
+  }
+
+  .check-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-electric-cyan);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sub-pricing-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .sub-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+
+  .sub-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .special-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1100px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .special-plans-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+    .cycle-tabs {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

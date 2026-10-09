@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCardList from '../../components/ArticleCardList.astro';
+
+const guidesTitle = "闪电猫 SpeedCAT 使用教程与文章列表 - 便宜安全机场选购与Clash配置";
+const guidesDesc = "精选 8 篇关于闪电猫 SpeedCAT 的科学上网、魔法梯子选购、Clash 节点导入、便宜机场与安全机场推荐、全球加速配置教程文章。";
+---
+
+<BaseLayout title={guidesTitle} description={guidesDesc}>
+  <div class="guides-page-header">
+    <div class="container">
+      <h1 class="page-title">闪电猫 SpeedCAT 知识与教程中心</h1>
+      <p class="page-desc">全面掌握稳定节点配置技巧、科学上网路由分流规则与翻墙出海避坑指南。</p>
+    </div>
+  </div>
+
+  <ArticleCardList />
+</BaseLayout>
+
+<style>
+  .guides-page-header {
+    background: radial-gradient(circle at 50% 0%, #172238 0%, #0B0F17 100%);
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .page-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>

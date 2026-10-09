@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+
+const pricingTitle = "闪电猫 SpeedCAT 套餐价格表 - 7大方案与16种结算方式详解";
+const pricingDesc = "全面了解闪电猫 SpeedCAT 的 4 款月度重置套餐、1 款特惠年付小包及 2 款按年总量不清零方案。提供明晰的性价比对比，轻松挑选便宜安全机场。";
+---
+
+<BaseLayout title={pricingTitle} description={pricingDesc}>
+  <div class="pricing-page-header">
+    <div class="container">
+      <h1 class="page-title">闪电猫 SpeedCAT 套餐价格全览</h1>
+      <p class="page-desc">透明无隐藏费用的阶梯式计费体系，满足从个人日常轻度浏览到企业级重度加速的全场景需求。</p>
+    </div>
+  </div>
+
+  <PricingSection />
+
+  <FaqSection />
+</BaseLayout>
+
+<style>
+  .pricing-page-header {
+    background: radial-gradient(circle at 50% 0%, #172238 0%, #0B0F17 100%);
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .page-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { siteConfig } from '../data/site';
+
+const faqTitle = "闪电猫 SpeedCAT 常见问题 FAQ - 科学上网与节点排查指南";
+const faqDesc = "解答闪电猫 SpeedCAT 账号注册、Clash 节点导入、流量重置机制与节点排查的核心问题，帮助您顺畅使用科学上网与魔法梯子服务。";
+---
+
+<BaseLayout title={faqTitle} description={faqDesc}>
+  <div class="faq-page-header">
+    <div class="container">
+      <h1 class="page-title">闪电猫 SpeedCAT 常见问题解答</h1>
+      <p class="page-desc">如果您在使用过程中遇到任何疑问或技术难题，请首先查阅以下分类 FAQ 指南。</p>
+    </div>
+  </div>
+
+  <FaqSection />
+
+  <div class="faq-help-cta">
+    <div class="container text-center">
+      <div class="help-box glass-card">
+        <h3>仍未解决您的问题？</h3>
+        <p>随时登录闪电猫控制台提交售后工单，技术运维团队将为您提供 1-on-1 专人解答支持。</p>
+        <a 
+          href={siteConfig.affUrl} 
+          target={siteConfig.affTarget} 
+          rel={siteConfig.affRel} 
+          class="btn btn-cyan btn-lg"
+        >
+          前往控制台提交工单
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .faq-page-header {
+    background: radial-gradient(circle at 50% 0%, #172238 0%, #0B0F17 100%);
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .page-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-help-cta {
+    padding: 60px 0 80px;
+    background: var(--color-bg);
+  }
+
+  .help-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .help-box h3 {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+
+  .help-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+</style>

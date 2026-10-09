@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PricingSection from '../components/PricingSection.astro';
+import ServiceIntro from '../components/ServiceIntro.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import ArticleCardList from '../components/ArticleCardList.astro';
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Service Advantages -->
+  <ServiceIntro />
+
+  <!-- Pricing Plans Section -->
+  <PricingSection />
+
+  <!-- Articles / Guides Showcase -->
+  <ArticleCardList />
+
+  <!-- User Reviews (最下方用户评价) -->
+  <UserReviewsSection />
+
+  <!-- FAQ Section (常见问题 FAQ) -->
+  <FaqSection />
+</BaseLayout>

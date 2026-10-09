@@ -1,0 +1,149 @@
+---
+import { articles } from '../data/articles';
+---
+
+<section class="articles-section" id="guides">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">选购与使用教程</span>
+      <h2 class="section-title">
+        科学上网指南与机场测评文章 <br/>
+        <span class="gradient-text">掌握稳定节点配置与翻墙出海技巧</span>
+      </h2>
+      <p class="section-desc">
+        包含便宜机场推荐、安全机场筛选、Clash 节点分流优化及全平台使用教程。
+      </p>
+    </div>
+
+    <div class="articles-grid">
+      {articles.map(art => (
+        <article class="article-card glass-card">
+          <div class="article-meta">
+            <span class="article-category">{art.category}</span>
+            <span class="article-readtime">{art.readTime}</span>
+          </div>
+
+          <h3 class="article-title">
+            <a href={`/guides/${art.slug}/`}>{art.title}</a>
+          </h3>
+
+          <p class="article-summary">
+            {art.summary}
+          </p>
+
+          <div class="article-keywords">
+            {art.keywords.slice(0, 4).map(kw => (
+              <span class="kw-tag">#{kw}</span>
+            ))}
+          </div>
+
+          <div class="article-footer">
+            <a href={`/guides/${art.slug}/`} class="read-more-link">
+              <span>阅读全文</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .articles-section {
+    padding: 85px 0;
+    background: var(--color-bg);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .article-card {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-size: 0.82rem;
+  }
+
+  .article-category {
+    color: var(--color-electric-cyan);
+    font-weight: 700;
+    background: rgba(34, 211, 238, 0.1);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+  }
+
+  .article-readtime {
+    color: var(--color-text-subtle);
+  }
+
+  .article-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .article-title a {
+    color: #FFFFFF;
+  }
+
+  .article-title a:hover {
+    color: var(--color-electric-cyan);
+  }
+
+  .article-summary {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .article-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .kw-tag {
+    font-size: 0.78rem;
+    color: #64748B;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .article-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-electric-cyan);
+  }
+
+  @media (max-width: 768px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

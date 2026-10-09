@@ -1,0 +1,17 @@
+{
+  "name": "iflashcat.sbs",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && node -e \"const fs = require('fs'); if (fs.existsSync('dist/sitemap-0.xml')) fs.copyFileSync('dist/sitemap-0.xml', 'dist/sitemap.xml');\"",
+    "test": "node scripts/verify-all.cjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.4.2",
+    "marked": "^18.1.0"
+  }
+}

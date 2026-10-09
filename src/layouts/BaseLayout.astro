@@ -1,0 +1,82 @@
+---
+import { siteConfig } from '../data/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  canonical?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  keywords = ['便宜机场', '安全机场', '机场推荐', '科学上网', '魔法梯子', '稳定节点', 'clash节点', 'clash机场', 'clashparty机场', '翻墙出海', '全球加速'],
+  canonical = `${siteConfig.url}${Astro.url.pathname}`
+} = Astro.props;
+
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      "url": siteConfig.url,
+      "name": "闪电猫 SpeedCAT 官网",
+      "description": siteConfig.description,
+      "inLanguage": siteConfig.lang
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      "name": "闪电猫 SpeedCAT",
+      "url": siteConfig.url,
+      "logo": `${siteConfig.url}/favicon.svg`
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang={siteConfig.lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords.join(', ')} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- GEO Geotargeting Metadata -->
+  <meta name="geo.region" content="CN" />
+  <meta name="geo.placename" content="Hong Kong / Global Acceleration" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content={siteConfig.name} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(siteSchema)}></script>
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>
